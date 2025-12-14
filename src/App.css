@@ -1,0 +1,20 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+   background-color: #f8f9fad2;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+}
+
+
+.p-paginator {
+  flex-wrap: nowrap !important;
+}
