@@ -117,7 +117,7 @@ const Header = () => {
           transition: "box-shadow 0.3s ease-in-out",
         }}
       >
-        🛒 Store App
+        🛒 شمسی پراڈکٹس 
       </div>
 
       <div className="md:w-auto flex align-items-center">
