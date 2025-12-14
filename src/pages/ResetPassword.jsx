@@ -8,7 +8,7 @@ import axios from "axios";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://shamsi-store-backend.vercel.app";
 
 const ResetPassword = () => {
   const navigate = useNavigate();

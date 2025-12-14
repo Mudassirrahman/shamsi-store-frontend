@@ -2,7 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 import { useAuthStore } from "./authStore";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://shamsi-store-backend.vercel.app";
 
 export const useOrderStore = create((set) => ({
   orders: [],

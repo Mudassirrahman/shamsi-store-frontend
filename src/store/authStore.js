@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://shamsi-store-backend.vercel.app";
 
 export const useAuthStore = create(
   persist(
@@ -20,10 +20,7 @@ export const useAuthStore = create(
         try {
           set({ loading: true, error: null });
 
-          const res = await axios.post(
-            `${BASE_URL}/auth/register`,
-            formData
-          );
+          const res = await axios.post(`${BASE_URL}/auth/register`, formData);
 
           set({ loading: false });
 
@@ -35,9 +32,7 @@ export const useAuthStore = create(
           }
         } catch (err) {
           set({
-            error:
-              err?.response?.data?.message ||
-              "Registration failed",
+            error: err?.response?.data?.message || "Registration failed",
             loading: false,
           });
         }
@@ -47,10 +42,7 @@ export const useAuthStore = create(
         try {
           set({ loading: true, error: null });
 
-          const res = await axios.post(
-            `${BASE_URL}/auth/login`,
-            formData
-          );
+          const res = await axios.post(`${BASE_URL}/auth/login`, formData);
 
           const { token, userName, role } = res.data;
 
@@ -64,9 +56,7 @@ export const useAuthStore = create(
           if (callback) callback(role);
         } catch (err) {
           set({
-            error:
-              err?.response?.data?.message ||
-              "Login failed",
+            error: err?.response?.data?.message || "Login failed",
             loading: false,
           });
         }

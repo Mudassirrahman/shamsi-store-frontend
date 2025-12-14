@@ -5,7 +5,7 @@ import { Button } from "primereact/button";
 import axios from "axios";
 import { Toast } from "primereact/toast";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://shamsi-store-backend.vercel.app";
 
 const VerifyEmail = () => {
   const navigate = useNavigate();

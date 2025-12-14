@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://shamsi-store-backend.vercel.app";
 
 const Login = () => {
   const {
