@@ -5,6 +5,7 @@ import { useAuthStore } from "../store/authStore";
 import "./Header.css";
 import { useCartStore } from "../store/cartStore";
 import { Badge } from "primereact/badge";
+import logo from "../../public/shamsi.jpeg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -79,33 +80,32 @@ const Header = () => {
   // );
 
   const end = (
-  <>
-    {role !== "admin" && (
-      <div className="relative">
-        <Button
-          icon="pi pi-shopping-cart"
-          className="p-button-text p-button-rounded p-button-secondary ml-3"
-          onClick={() => navigate("/cart")}
-          tooltip="View Cart"
-          tooltipOptions={{ position: "bottom" }}
-        />
-        {cartItems.length > 0 && (
-          <Badge
-            value={cartItems.length}
-            className="absolute"
-            style={{
-              top: "-8px",
-              right: "-8px",
-              backgroundColor: "#f44336",
-              color: "#fff",
-            }}
+    <>
+      {role !== "admin" && (
+        <div className="relative">
+          <Button
+            icon="pi pi-shopping-cart"
+            className="p-button-text p-button-rounded p-button-secondary ml-3"
+            onClick={() => navigate("/cart")}
+            tooltip="View Cart"
+            tooltipOptions={{ position: "bottom" }}
           />
-        )}
-      </div>
-    )}
-  </>
-);
-
+          {cartItems.length > 0 && (
+            <Badge
+              value={cartItems.length}
+              className="absolute"
+              style={{
+                top: "-8px",
+                right: "-8px",
+                backgroundColor: "#f44336",
+                color: "#fff",
+              }}
+            />
+          )}
+        </div>
+      )}
+    </>
+  );
 
   return (
     <div className="fixed-header flex justify-content-between align-items-center px-4 py-2 shadow-2">
@@ -117,7 +117,8 @@ const Header = () => {
           transition: "box-shadow 0.3s ease-in-out",
         }}
       >
-        🛒 شمسی پراڈکٹس 
+        <img width={25} className="mx-2" src={logo} alt="logo" />
+        <span> شمسی پراڈکٹس </span>
       </div>
 
       <div className="md:w-auto flex align-items-center">

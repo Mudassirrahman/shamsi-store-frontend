@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useCartStore } from "../store/cartStore";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-import { InputNumber } from "primereact/inputnumber";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -42,18 +41,63 @@ const Cart = () => {
                 className="mb-3 shadow-2 border-round"
               >
                 <div className="flex flex-column gap-2">
-                  <div className="flex align-items-center gap-2">
-                    <label>Quantity:</label>
-                    <InputNumber
-                      value={item.quantity}
-                      onValueChange={(e) => updateQuantity(item._id, e.value || 1)}
-                      min={1}
-                      showButtons
-                      style={{ width: "100px" }}
-                    />
+                  <div className="flex justify-content-between sm:flex-row sm:align-items-center gap-2">
+                    <label className="font-medium">Quantity:</label>
+
+                    <div className="flex align-items-center border-1  overflow-hidden">
+                      <button
+                        type="button"
+                        className="p-2 border-none bg-gray-100 cursor-pointer"
+                        disabled={item.quantity === 1}
+                        onClick={() =>
+                          updateQuantity(
+                            item._id,
+                            Math.max(1, item.quantity - 1)
+                          )
+                        }
+                      >
+                        <i className="pi pi-minus" />
+                      </button>
+
+                      <input
+                        type="number"
+                        min={1}
+                        step={1}
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        value={item.quantity}
+                        onChange={(e) => {
+                          const value = Math.floor(Number(e.target.value));
+                          updateQuantity(
+                            item._id,
+                            Math.max(1, isNaN(value) ? 1 : value)
+                          );
+                        }}
+                        onWheel={(e) => e.currentTarget.blur()}
+                        onKeyDown={(e) => {
+                          if (e.key === "." || e.key === ",") {
+                            e.preventDefault();
+                          }
+                        }}
+                        className="w-4rem text-center border-none outline-none"
+                      />
+
+                      <button
+                        type="button"
+                        className="p-2 border-none bg-gray-100 cursor-pointer"
+                        onClick={() =>
+                          updateQuantity(item._id, item.quantity + 1)
+                        }
+                      >
+                        <i className="pi pi-plus" />
+                      </button>
+                    </div>
                   </div>
+
                   <div className="flex justify-content-between align-items-center">
-                    <span className="font-bold">Total: ${item.price * item.quantity}</span>
+                    <span className="font-bold">
+                      Total: ${item.price * item.quantity}
+                    </span>
                     <Button
                       icon="pi pi-trash"
                       severity="danger"
